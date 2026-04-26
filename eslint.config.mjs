@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Ignore external sample/legacy project directories
+    "AI-Car-Modification-Studio/**",
+    "cyberpunk-ui/**",
+    "public/**",
   ]),
 ]);
 

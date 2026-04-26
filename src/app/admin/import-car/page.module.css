@@ -1,0 +1,13 @@
+.container { min-height: calc(100vh - 80px); padding: 3rem 2rem; background: var(--background); }
+.header { max-width: 900px; margin: 0 auto 2.5rem; }
+.title { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { color: var(--text-muted); margin-top: 0.5rem; }
+.card { max-width: 900px; margin: 0 auto; padding: 2.5rem; }
+.form { display: flex; flex-direction: column; gap: 1.5rem; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.group { display: flex; flex-direction: column; gap: 0.5rem; }
+.success { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--success); color: var(--success); padding: 1rem; border-radius: var(--radius-sm); font-weight: 600; }
+.error { background: rgba(239, 68, 68, 0.1); border: 1px solid var(--error); color: var(--error); padding: 1rem; border-radius: var(--radius-sm); }
+.preview { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--border); margin-top: 0.5rem; background: var(--surface-hover); }
+.adminBadge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(139, 92, 246, 0.15); border: 1px solid #8b5cf6; color: #8b5cf6; padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+@media (max-width: 600px) { .row { grid-template-columns: 1fr; } }

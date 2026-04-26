@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 3D Car Modification Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%2300d9ff'>🚗</text></svg>" />
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="src/styles/variables.css" />
+    <link rel="stylesheet" href="src/styles/glass-ui.css" />
+    <link rel="stylesheet" href="src/styles/dashboard.css" />
+
+    <!-- Third-party Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Main Dashboard Container -->
+    <div id="dashboard">
+      <!-- ========================
+           LEFT SIDEBAR NAVIGATION
+           ======================== -->
+      <aside id="sidebar">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header">
+          <h1>🚗 CAR STUDIO</h1>
+          <p>AI-Powered Design</p>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-action="import">
+            📁 Import Model
+          </button>
+          <button class="nav-item" data-action="detect">
+            🔍 Detect Parts
+          </button>
+          <button class="nav-item" data-action="modify">
+            🎨 Modify Design
+          </button>
+          <button class="nav-item" data-action="export">
+            💾 Export Model
+          </button>
+        </nav>
+
+        <!-- Tools Section -->
+        <div class="tools-section">
+          <h3>⚙️ Tools</h3>
+          <div class="tool-buttons">
+            <button class="glass-btn glass-btn-primary" onclick="location.reload()">
+              🔄 Reset View
+            </button>
+            <button class="glass-btn glass-btn-secondary">
+              ⚡ Performance
+            </button>
+            <button class="glass-btn">
+              💡 Help
+            </button>
+          </div>
+        </div>
+
+        <!-- Model Library -->
+        <div class="control-section">
+          <h3>📚 Models</h3>
+          <div class="model-library">
+            <div class="model-item">
+              <div class="model-item-name">Sports Car</div>
+              <div class="model-item-info">High performance design</div>
+            </div>
+            <div class="model-item">
+              <div class="model-item-name">SUV</div>
+              <div class="model-item-info">Rugged and spacious</div>
+            </div>
+            <div class="model-item">
+              <div class="model-item-name">Sedan</div>
+              <div class="model-item-info">Elegant and efficient</div>
+            </div>
+            <div class="model-item">
+              <div class="model-item-name">Truck</div>
+              <div class="model-item-info">Powerful hauler</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ========================
+           CENTER VIEWER CONTAINER
+           ======================== -->
+      <div id="viewer-container">
+        <!-- 3D Canvas -->
+        <canvas id="canvas"></canvas>
+
+        <!-- Viewer Info Bar -->
+        <div class="viewer-info">
+          <div class="viewer-stats">
+            <div class="stat-item">
+              <div class="stat-label">Polygons</div>
+              <div class="stat-value" data-stat="polygons">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Vertices</div>
+              <div class="stat-value" data-stat="vertices">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Textures</div>
+              <div class="stat-value">0</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">FPS</div>
+              <div class="stat-value">60</div>
+            </div>
+          </div>
+          <div style="color: var(--text-tertiary); font-size: var(--font-size-sm)">
+            🖱️ Drag to rotate • 🔄 Scroll to zoom
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================
+           RIGHT CONTROL PANEL
+           ======================== -->
+      <aside id="control-panel">
+        <!-- Transformation Controls -->
+        <div class="control-section">
+          <h3>🎛️ Transform</h3>
+
+          <!-- Rotation Control -->
+          <div class="control-group">
+            <label for="rotation-range">Rotation (°)</label>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="rotation-range"
+                name="rotation"
+                min="0"
+                max="360"
+                value="0"
+                step="1"
+              />
+              <span class="slider-value">0</span>
+            </div>
+          </div>
+
+          <!-- Scale Control -->
+          <div class="control-group">
+            <label for="scale-range">Scale</label>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="scale-range"
+                name="scale"
+                min="0.5"
+                max="2"
+                value="1"
+                step="0.1"
+              />
+              <span class="slider-value">1</span>
+            </div>
+          </div>
+
+          <!-- Position Controls -->
+          <div class="control-group">
+            <label for="x-pos">X Position</label>
+            <div class="slider-container">
+              <input type="range" id="x-pos" name="x-position" min="-5" max="5" value="0" step="0.1" />
+              <span class="slider-value">0</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="y-pos">Y Position</label>
+            <div class="slider-container">
+              <input type="range" id="y-pos" name="y-position" min="-5" max="5" value="0" step="0.1" />
+              <span class="slider-value">0</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="z-pos">Z Position</label>
+            <div class="slider-container">
+              <input type="range" id="z-pos" name="z-position" min="-5" max="5" value="0" step="0.1" />
+              <span class="slider-value">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Design Generator -->
+        <div id="ai-prompt-box">
+          <h3>✨ AI Design</h3>
+          <textarea
+            id="ai-prompt-input"
+            placeholder="e.g., 'Add racing stripes and red accents' or 'Make it look like a luxury car'"
+            maxlength="500"
+          ></textarea>
+          <button class="glass-btn glass-btn-secondary" id="ai-submit-btn">
+            🤖 Generate Design
+          </button>
+        </div>
+
+        <!-- Car Part Detection -->
+        <div class="control-section">
+          <h3>🔍 Parts Detection</h3>
+          <div class="control-group">
+            <label for="photo-upload">Upload Car Photo</label>
+            <input
+              type="file"
+              id="photo-upload"
+              accept="image/*"
+              style="
+                width: 100%;
+                padding: var(--space-md);
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid var(--glass-border);
+                border-radius: var(--radius-md);
+                color: var(--text-primary);
+                cursor: pointer;
+              "
+            />
+          </div>
+          <button class="glass-btn glass-btn-primary" style="width: 100%">
+            🎬 Analyze Photo
+          </button>
+        </div>
+
+        <!-- Style Presets -->
+        <div class="control-section">
+          <h3>🎨 Presets</h3>
+          <div class="control-group">
+            <button
+              class="glass-btn"
+              style="width: 100%; background: linear-gradient(135deg, rgba(255, 0, 110, 0.3), rgba(255, 190, 11, 0.2))"
+            >
+              🏎️ Racing
+            </button>
+            <button
+              class="glass-btn"
+              style="width: 100%; background: linear-gradient(135deg, rgba(0, 217, 255, 0.3), rgba(255, 190, 11, 0.2))"
+            >
+              👑 Luxury
+            </button>
+            <button
+              class="glass-btn"
+              style="width: 100%; background: linear-gradient(135deg, rgba(255, 0, 110, 0.3), rgba(0, 217, 255, 0.2))"
+            >
+              🌌 Futuristic
+            </button>
+            <button
+              class="glass-btn"
+              style="width: 100%; background: linear-gradient(135deg, rgba(255, 190, 11, 0.3), rgba(0, 217, 255, 0.2))"
+            >
+              📻 Classic
+            </button>
+          </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="control-section">
+          <h3>💾 Export</h3>
+          <button class="glass-btn glass-btn-primary" style="width: 100%">
+            ⬇️ Download Model
+          </button>
+          <button class="glass-btn" style="width: 100%; margin-top: var(--space-md)">
+            📸 Screenshot
+          </button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Main Application Script -->
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>

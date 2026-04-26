@@ -1,0 +1,88 @@
+/* ===========================
+   CSS VARIABLES & COLOR PALETTE
+   =========================== */
+
+:root {
+  /* Primary Colors */
+  --primary: #00d9ff;
+  --primary-light: #33e6ff;
+  --primary-dark: #00a3cc;
+
+  /* Secondary Colors */
+  --secondary: #ff006e;
+  --secondary-light: #ff3385;
+  --secondary-dark: #cc0056;
+
+  /* Accent Colors */
+  --accent: #ffbe0b;
+  --accent-light: #ffd60a;
+  --accent-dark: #cc9600;
+
+  /* Neutral Colors */
+  --dark-bg: #0a0e27;
+  --dark-surface: #151932;
+  --dark-surface-light: #1f2547;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b9d4;
+  --text-tertiary: #8892b0;
+
+  /* Glass Effect */
+  --glass-bg: rgba(21, 25, 50, 0.8);
+  --glass-border: rgba(0, 217, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+  /* Neon Glow */
+  --neon-cyan: 0 0 20px rgba(0, 217, 255, 0.6);
+  --neon-pink: 0 0 20px rgba(255, 0, 110, 0.6);
+  --neon-yellow: 0 0 20px rgba(255, 190, 11, 0.6);
+
+  /* Typography */
+  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 3rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Z-Index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-tooltip: 500;
+}
+
+/* Dark mode is default */
+@media (prefers-color-scheme: light) {
+  :root {
+    --dark-bg: #f5f5f5;
+    --dark-surface: #ffffff;
+    --dark-surface-light: #f9f9f9;
+    --text-primary: #000000;
+    --text-secondary: #4a4a4a;
+    --text-tertiary: #757575;
+  }
+}

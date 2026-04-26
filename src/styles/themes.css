@@ -1,0 +1,23 @@
+/* Light Mode Variables */
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-hover: #f1f5f9;
+  --border: #e2e8f0;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-muted: #64748b;
+}
+
+/* Dark Mode Overrides (Theme Toggle via ThemeProvider) */
+[data-theme='dark'] {
+  --background: #050505;
+  --foreground: #f8fafc;
+  --surface: #111111;
+  --surface-hover: #1f1f1f;
+  --border: #262626;
+  --glass-bg: rgba(17, 17, 17, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-muted: #94a3b8;
+}

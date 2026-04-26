@@ -1,0 +1,166 @@
+/* ===========================
+   GLASSMORPHISM UI COMPONENTS
+   =========================== */
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-normal);
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 217, 255, 0.4);
+  background: rgba(21, 25, 50, 0.95);
+}
+
+/* Glass Buttons */
+.glass-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-base);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-btn:hover {
+  background: rgba(21, 25, 50, 0.95);
+  border-color: var(--primary);
+  box-shadow: var(--neon-cyan);
+  transform: translateY(-2px);
+}
+
+.glass-btn:active {
+  transform: translateY(0);
+}
+
+/* Primary Button */
+.glass-btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-color: var(--primary);
+  box-shadow: var(--neon-cyan);
+}
+
+.glass-btn-primary:hover {
+  box-shadow: var(--neon-cyan), 0 0 30px rgba(0, 217, 255, 0.8);
+}
+
+/* Secondary Button */
+.glass-btn-secondary {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+  border-color: var(--secondary);
+  box-shadow: var(--neon-pink);
+}
+
+.glass-btn-secondary:hover {
+  box-shadow: var(--neon-pink), 0 0 30px rgba(255, 0, 110, 0.8);
+}
+
+/* Glass Input */
+.glass-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  padding: var(--space-md);
+  font-size: var(--font-size-base);
+  font-family: var(--font-primary);
+  transition: all var(--transition-normal);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--neon-cyan), inset 0 0 10px rgba(0, 217, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Glass Badge */
+.glass-badge {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  display: inline-block;
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+}
+
+.glass-badge:hover {
+  border-color: var(--primary);
+  box-shadow: var(--neon-cyan);
+}
+
+/* Glass Label */
+.glass-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+/* Neon Text Effect */
+.neon-text {
+  color: var(--primary);
+  text-shadow: var(--neon-cyan);
+  font-weight: 700;
+  animation: neon-flicker 3s infinite alternate;
+}
+
+@keyframes neon-flicker {
+  0%, 18%, 22%, 25%, 54%, 56%, 100% {
+    text-shadow: var(--neon-cyan);
+  }
+  20%, 24%, 55% {
+    text-shadow: var(--neon-cyan), 0 0 40px rgba(0, 217, 255, 0.8);
+  }
+}
+
+/* Glowing Border Effect */
+.glow-border {
+  position: relative;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary);
+  box-shadow: var(--neon-cyan), inset 0 0 20px rgba(0, 217, 255, 0.1);
+}
+
+/* Backdrop Blur Enhancement */
+.backdrop-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Smooth Transitions */
+.smooth-transition {
+  transition: all var(--transition-normal);
+}
+
+/* Hover Scale Effect */
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

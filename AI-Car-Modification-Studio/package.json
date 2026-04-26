@@ -1,0 +1,31 @@
+{
+  "name": "ai-car-modification-studio",
+  "version": "1.0.0",
+  "description": "A web application for importing car models, detecting car parts using AI, and modifying car designs in real-time using a 3D viewer",
+  "main": "src/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "live-server --port=8000",
+    "build": "echo 'Static project - no build needed'",
+    "start": "live-server --port=8000"
+  },
+  "keywords": [
+    "3d-car",
+    "ai",
+    "modification",
+    "three.js",
+    "car-design",
+    "studio"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^r128"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
