@@ -4,7 +4,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { CartProvider } from '@/components/CartProvider';
 import { CameraProvider } from '@/components/CameraProvider';
 import Navbar from '@/components/Navbar';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: '3D Car Modification Platform',
