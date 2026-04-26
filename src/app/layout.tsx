@@ -5,6 +5,7 @@ import { CartProvider } from '@/components/CartProvider';
 import { CameraProvider } from '@/components/CameraProvider';
 import Navbar from '@/components/Navbar';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: '3D Car Modification Platform',
@@ -28,6 +29,7 @@ export default function RootLayout({
           </CartProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
