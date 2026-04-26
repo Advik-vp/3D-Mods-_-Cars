@@ -93,7 +93,7 @@ export default function VirtualGarage() {
               </group>
             </Environment>
             
-            <Stage environment={null} intensity={0.6} contactShadow={{ resolution: 1024, scale: 10, blur: 2, opacity: 0.5 }}>
+            <Stage environment={null} intensity={0.6} shadows={{ type: 'contact', resolution: 1024, scale: 10, blur: 2, opacity: 0.5 }}>
                {activeMod && <CarModel config={{ ...(activeMod.config || {}), targetCar: activeMod.carModel }} />}
             </Stage>
           </Suspense>
@@ -134,7 +134,7 @@ export default function VirtualGarage() {
           {activeMod && (
             <div style={{ textAlign: 'right', background: 'rgba(0,0,0,0.6)', padding: '1.5rem', borderRadius: 'var(--radius)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <h2 style={{ fontSize: '2rem', marginBottom: '0.25rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>{activeMod.name}</h2>
-              <p style={{ opacity: 0.8, textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>{activeMod.carModel} • {activeMod.config?.spoiler.toUpperCase()} Edition</p>
+              <p style={{ opacity: 0.8, textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>{activeMod.carModel} • {(activeMod.config?.spoiler || 'base').toUpperCase()} Edition</p>
             </div>
           )}
         </div>

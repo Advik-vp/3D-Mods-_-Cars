@@ -11,11 +11,8 @@ type MongooseCache = {
   promise: Promise<typeof mongoose> | null;
 };
 
-let cached = (global as unknown as { mongoose?: MongooseCache }).mongoose;
-
-if (!cached) {
-  cached = (global as unknown as { mongoose?: MongooseCache }).mongoose = { conn: null, promise: null };
-}
+let cached: MongooseCache = (global as unknown as { mongoose?: MongooseCache }).mongoose || { conn: null, promise: null };
+(global as unknown as { mongoose?: MongooseCache }).mongoose = cached;
 
 async function connectToDatabase() {
   if (cached.conn) {

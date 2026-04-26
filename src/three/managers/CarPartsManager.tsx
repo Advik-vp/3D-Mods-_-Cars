@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { ThreeEvent, useGLTF, TransformControls } from '@react-three/drei';
+import { useGLTF, TransformControls } from '@react-three/drei';
+import { ThreeEvent } from '@react-three/fiber';
 import { useStudioContext } from '@/context/StudioContext';
 import * as THREE from 'three';
 
