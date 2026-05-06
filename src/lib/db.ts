@@ -8,14 +8,14 @@ type MongooseCache = {
   promise: Promise<typeof mongoose> | null;
 };
 
-let cached: MongooseCache = (global as unknown as { mongoose?: MongooseCache }).mongoose || { conn: null, promise: null };
+const cached: MongooseCache = (global as unknown as { mongoose?: MongooseCache }).mongoose || { conn: null, promise: null };
 (global as unknown as { mongoose?: MongooseCache }).mongoose = cached;
 
 async function connectToDatabase() {
   if (!MONGODB_URI) {
     if (process.env.NODE_ENV === 'production') {
        console.warn('MONGODB_URI not defined, bypassing db connection for Next.js build');
-       return null as any;
+       return null;
     } else {
        throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
     }
