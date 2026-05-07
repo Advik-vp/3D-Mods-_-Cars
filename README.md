@@ -1,200 +1,103 @@
-# 3D Car Modification Platform
+<div align="center">
+  <img src="https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React_Three_Fiber-v9-blue?style=for-the-badge&logo=react" alt="React Three Fiber" />
+  <img src="https://img.shields.io/badge/Firebase-Auth-FFCA28?style=for-the-badge&logo=firebase" alt="Firebase" />
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb" alt="MongoDB" />
+  <br />
+  <br />
+  
+  <h1>🏎️ 3D Car Modification Studio</h1>
+  <p><strong>A Next-Generation Web Platform for Immersive 3D Vehicle Customization</strong></p>
 
-A full-stack web application built with Next.js, React Three Fiber, and Firebase for designing and customizing 3D car models with AI-powered features.
+  [![CI/CD Pipeline](https://github.com/Advik-vp/3D-Mods-_-Cars/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Advik-vp/3D-Mods-_-Cars/actions)
+  [![Vercel Deploy](https://github.com/Advik-vp/3D-Mods-_-Cars/actions/workflows/vercel-deploy.yml/badge.svg)](https://github.com/Advik-vp/3D-Mods-_-Cars/actions)
+  [![CodeQL](https://github.com/Advik-vp/3D-Mods-_-Cars/actions/workflows/codeql.yml/badge.svg)](https://github.com/Advik-vp/3D-Mods-_-Cars/actions)
+</div>
 
-## ✅ Zero Issues Configuration
+---
 
-This project is configured with:
-- ✅ **ESLint & TypeScript**: Full type-safety and code quality checks
-- ✅ **GitHub Actions**: Automated CI/CD pipeline with security scanning
-- ✅ **Vercel Deployment**: Optimized production builds and preview deployments
-- ✅ **CodeQL**: Security analysis integrated into workflows
-- ✅ **Environment Validation**: Proper configuration and secrets management
+## 🌟 Overview
+
+The **3D Car Modification Studio** is a state-of-the-art web application built with **Next.js** and **React Three Fiber**. It allows users to seamlessly design, customize, and view high-fidelity 3D car models in real-time right from their browsers!
+
+Whether you want to visualize a new carbon-fiber spoiler, preview aftermarket alloy wheels, or test a custom paint job on a Koenigsegg or Ferrari, this platform provides an unmatched immersive experience.
+
+## ✨ Key Features
+
+- 🏎️ **High-Fidelity 3D Models:** Native integration of premium models like the **Ferrari 458 Italia** and **Koenigsegg Agera**.
+- 🎨 **Dynamic Material Painting:** Uses `MeshPhysicalMaterial` and real-time color syncing for photorealistic car paint finishes with custom clearcoats.
+- 🏙️ **HDRI Lighting & Reflections:** Integrated `@react-three/drei` Environment maps for ultra-realistic studio and city reflections.
+- 🛍️ **Sketchfab Integration:** Instant access to an expansive library of community-driven real car models.
+- 🛡️ **Zero-Issues Architecture:** Fully typed with TypeScript, linted with ESLint, and secured with GitHub CodeQL.
+- ⚡ **Automated CI/CD:** Fully automated testing, linting, and deployment pipeline to Vercel via GitHub Actions.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
-- MongoDB (local or MongoDB Atlas)
-- Firebase project credentials
+- **Node.js** 18+ and `npm`
+- **MongoDB** (Local or MongoDB Atlas cluster)
+- **Firebase** Project Credentials
 
-### Local Development
-
-1. **Clone and Install**
-   ```bash
-   git clone <repository-url>
-   cd 3D-car
-   npm ci
-   ```
-
-2. **Configure Environment Variables**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your credentials
-   ```
-
-3. **Run Development Server**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000)
-
-4. **Run Code Quality Checks**
-   ```bash
-   npm run lint
-   npm run build  # Full production build test
-   ```
-
-## 📁 Project Structure
-
-```
-├── src/
-│   ├── app/              # Next.js App Router
-│   ├── api/              # API routes
-│   ├── components/       # React components
-│   ├── lib/              # Utilities and helpers
-│   ├── models/           # Database models
-│   ├── services/         # Business logic
-│   └── styles/           # Global styles
-├── public/               # Static assets
-├── .github/workflows/    # GitHub Actions CI/CD
-├── vercel.json          # Vercel deployment config
-└── eslint.config.mjs    # Code quality rules
-```
-
-## 🔧 Development Commands
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint checks |
-
-## 🌐 Deployment
-
-### GitHub Setup
-1. Create repository on GitHub
-2. Push code: `git push -u origin main`
-3. GitHub Actions workflows run automatically
-
-### Vercel Deployment
-
-1. **Connect Repository**
-   - Go to [Vercel Dashboard](https://vercel.com)
-   - Import your GitHub repository
-   - Framework: **Next.js** (auto-detected)
-
-2. **Configure Secrets**
-   ```
-   Environment Variables:
-   - MONGODB_URI (MongoDB Atlas connection string)
-   - JWT_SECRET (secure random string, min 32 characters)
-   - FIREBASE_API_KEY
-   - FIREBASE_AUTH_DOMAIN
-   - FIREBASE_PROJECT_ID
-   - FIREBASE_STORAGE_BUCKET
-   - FIREBASE_MESSAGING_SENDER_ID
-   - FIREBASE_APP_ID
-   - NEXT_PUBLIC_* versions for client-side vars
-   ```
-
-3. **Deploy**
-   - Click "Deploy" - automatic builds from `main` branch
-   - Preview deployments from pull requests
-
-### GitHub Actions Secrets
-Add these secrets to your GitHub repository settings:
-- `VERCEL_TOKEN` (from [Vercel settings](https://vercel.com/account/tokens))
-- `VERCEL_ORG_ID` (from Vercel project settings)
-- `VERCEL_PROJECT_ID` (from Vercel project settings)
-- All environment variables listed above
-
-## ✨ CI/CD Workflows
-
-### `.github/workflows/ci-cd.yml`
-- Runs on every push and pull request
-- Tests: ESLint, TypeScript, Build, Npm Audit
-- Node versions: 18.x, 20.x
-- Status: Must pass for merge
-
-### `.github/workflows/vercel-deploy.yml`
-- Auto-deploys to Vercel from main branch
-- Requires Vercel secrets configured
-- Production build quality gates
-
-### `.github/workflows/codeql.yml`
-- Weekly security analysis
-- Automatic on push/PR to main
-- Zero-tolerance for critical issues
-
-## 🔍 Code Quality
-
-### ESLint Configuration
-- **Base**: `eslint-config-next/core-web-vitals`
-- **TypeScript**: Full type checking enabled
-- **Ignored**: AI-Car-Modification-Studio, cyberpunk-ui, public
-
-Run checks:
+### 1. Clone & Install
 ```bash
-npm run lint              # Check all files
-npm run lint -- --fix    # Auto-fix issues
-```
-
-### TypeScript
-- Strict mode enabled
-- Generated: `next-env.d.ts`
-- Check: `npx tsc --noEmit`
-
-## 📚 Environment Variables
-
-### Required for Production
-```
-MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/db
-JWT_SECRET=very-secure-32-character-minimum-secret
-FIREBASE_* credentials from Firebase Console
-```
-
-### See `.env.example` for complete list
-
-## 🆘 Troubleshooting
-
-### Build Fails
-```bash
-# Clean install
-rm -rf node_modules package-lock.json
+git clone https://github.com/Advik-vp/3D-Mods-_-Cars.git
+cd 3D-Mods-_-Cars
 npm ci
-npm run build
 ```
 
-### Lint Errors
+### 2. Configure Environment
+Create a `.env.local` file by copying the example template:
 ```bash
-npm run lint -- --fix  # Auto-fix
+cp .env.example .env.local
 ```
+Update the newly created `.env.local` with your MongoDB URI, Firebase keys, and JWT secrets.
 
-### Local MongoDB Issues
-- Use MongoDB Atlas connection string instead of localhost
-- Vercel doesn't support localhost connections
-
-## 📖 Documentation
-
-- **Deployment**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
-- **Setup Details**: See [SETUP.md](./SETUP.md)
-- **Next.js Docs**: [nextjs.org](https://nextjs.org/docs)
-- **Vercel Docs**: [vercel.com/docs](https://vercel.com/docs)
-
-## 🤝 Contributing
-
-1. Create feature branch: `git checkout -b feature/amazing-feature`
-2. Make changes and test: `npm run lint && npm run build`
-3. Commit: `git commit -m "Add amazing feature"`
-4. Push: `git push origin feature/amazing-feature`
-5. Create Pull Request - CI/CD checks run automatically
-
-## 📝 License
-
-This project is licensed under the MIT License.
+### 3. Run Development Server
+```bash
+npm run dev
+```
+Navigate to [http://localhost:3000](http://localhost:3000) to view the studio!
 
 ---
 
-**Status**: ✅ Zero Issues | ✅ GitHub Actions Passing | ✅ Vercel Ready
+## 📁 Project Structure
+
+```text
+├── src/
+│   ├── app/              # Next.js App Router Pages & API
+│   ├── components/       # 3D Viewers (GLTF/OBJ) & UI Components
+│   ├── lib/              # Core Constants & DB connections
+│   ├── models/           # Mongoose Database Schemas
+│   └── services/         # 3D Model Loading Services
+├── public/               # Static Assets (HDRIs, GLB, OBJ models)
+├── .github/workflows/    # CI/CD pipelines (Lint, Build, CodeQL, Vercel)
+└── vercel.json           # Deployment configurations
+```
+
+## 🛠️ Tech Stack
+- **Frontend:** Next.js 16 (App Router), React 19, Tailwind/Vanilla CSS
+- **3D Engine:** Three.js, React Three Fiber, React Three Drei
+- **Backend:** Node.js, Next.js API Routes
+- **Database:** MongoDB (via Mongoose)
+- **Auth:** Firebase Authentication, NextAuth
+- **DevOps:** GitHub Actions, Vercel, CodeQL
+
+---
+
+## 🤝 Contributing
+
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Create your Feature Branch: `git checkout -b feature/AmazingFeature`
+2. Ensure Code Quality: `npm run lint` & `npm run build`
+3. Commit your Changes: `git commit -m 'Add some AmazingFeature'`
+4. Push to the Branch: `git push origin feature/AmazingFeature`
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
+
+<div align="center">
+  <i>Built with passion for car enthusiasts and 3D developers.</i>
+</div>
