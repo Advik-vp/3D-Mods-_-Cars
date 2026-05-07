@@ -3,7 +3,7 @@ import { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, ContactShadows, Environment, Float } from '@react-three/drei';
 import { Group } from 'three';
-import CarModel from '@/components/CarModel';
+import OBJModelViewer from '@/components/OBJModelViewer';
 
 function RotatingCarGroup() {
   const groupRef = useRef<Group>(null);
@@ -17,7 +17,12 @@ function RotatingCarGroup() {
   return (
     <group ref={groupRef}>
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.2} floatingRange={[-0.1, 0.1]}>
-        <CarModel config={{ targetCar: 'supercar', color: '#3b82f6', wheels: 'sport', headlights: 'led', windowTint: 'dark' }} />
+        <OBJModelViewer
+          modelUrl="/models/uploads_files_2792345_Koenigsegg.obj"
+          scale={0.01}
+          position={[0, -1, 0]}
+          rotation={[0, Math.PI, 0]}
+        />
       </Float>
     </group>
   );

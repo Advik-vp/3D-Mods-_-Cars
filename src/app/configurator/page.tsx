@@ -1,13 +1,15 @@
 'use client';
 import { useState, Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, ContactShadows } from '@react-three/drei';
+import { OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/components/CartProvider';
 import CarModel from '@/components/CarModel';
+import OBJModelViewer from '@/components/OBJModelViewer';
+import GLTFModelViewer from '@/components/GLTFModelViewer';
 import SketchfabViewer from '@/components/SketchfabViewer';
 import styles from './page.module.css';
-import { FLATTENED_CARS, SKETCHFAB_MODELS, hasSketchfabModel } from '@/lib/constants';
+import { FLATTENED_CARS, SKETCHFAB_MODELS, hasSketchfabModel, LOCAL_OBJ_MODELS, hasLocalOBJModel, LOCAL_GLTF_MODELS, hasLocalGLTFModel } from '@/lib/constants';
 import { ShoppingCart, X } from 'lucide-react';
 
 const CAR_COLORS = ['#ffffff', '#000000', '#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
@@ -145,6 +147,64 @@ export default function Configurator() {
             carName={config.targetCar}
             primaryColor={config.color}
           />
+        ) : hasLocalOBJModel(config.targetCar) ? (
+          <Canvas shadows camera={{ position: [5, 2, 5], fov: 45 }}>
+            <color attach="background" args={['#1a1a1a']} />
+            <hemisphereLight args={['#b3d4f0', '#0a0a0a', 0.6]} />
+            <directionalLight position={[10, 12, 8]} intensity={1.2} castShadow shadow-mapSize={[1024, 1024]} />
+            <directionalLight position={[-8, 6, -4]} intensity={0.4} color="#6699ff" />
+            <pointLight position={[0, 6, 0]} intensity={0.5} color="#ffffff" />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+            
+            <Suspense fallback={null}>
+              <Environment files="/potsdamer_platz_1k.hdr" />
+              <OBJModelViewer
+                modelUrl={LOCAL_OBJ_MODELS[config.targetCar]}
+                scale={0.01}
+                color={config.color}
+                position={[0, -1, 0]}
+                rotation={[0, Math.PI, 0]}
+              />
+              <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.5} far={10} color="#000000" />
+            </Suspense>
+            
+            <OrbitControls 
+              enablePan={false} 
+              minPolarAngle={0} 
+              maxPolarAngle={Math.PI / 2 - 0.05}
+              minDistance={3}
+              maxDistance={10}
+            />
+          </Canvas>
+        ) : hasLocalGLTFModel(config.targetCar) ? (
+          <Canvas shadows camera={{ position: [5, 2, 5], fov: 45 }}>
+            <color attach="background" args={['#1a1a1a']} />
+            <hemisphereLight args={['#b3d4f0', '#0a0a0a', 0.6]} />
+            <directionalLight position={[10, 12, 8]} intensity={1.2} castShadow shadow-mapSize={[1024, 1024]} />
+            <directionalLight position={[-8, 6, -4]} intensity={0.4} color="#6699ff" />
+            <pointLight position={[0, 6, 0]} intensity={0.5} color="#ffffff" />
+            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+            
+            <Suspense fallback={null}>
+              <Environment files="/potsdamer_platz_1k.hdr" />
+              <GLTFModelViewer
+                modelUrl={LOCAL_GLTF_MODELS[config.targetCar]}
+                scale={1.5}
+                color={config.color}
+                position={[0, -1, 0]}
+                rotation={[0, Math.PI / 4, 0]}
+              />
+              <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.5} far={10} color="#000000" />
+            </Suspense>
+            
+            <OrbitControls 
+              enablePan={false} 
+              minPolarAngle={0} 
+              maxPolarAngle={Math.PI / 2 - 0.05}
+              minDistance={3}
+              maxDistance={10}
+            />
+          </Canvas>
         ) : (
           <Canvas shadows camera={{ position: [5, 2, 5], fov: 45 }}>
             <color attach="background" args={['#1a1a1a']} />
@@ -155,6 +215,7 @@ export default function Configurator() {
             <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
             
             <Suspense fallback={null}>
+              <Environment files="/potsdamer_platz_1k.hdr" />
               <CarModel config={config} />
               <ContactShadows resolution={1024} scale={10} blur={2} opacity={0.5} far={10} color="#000000" />
             </Suspense>
@@ -212,10 +273,10 @@ export default function Configurator() {
           />
         </div>
 
-        {hasSketchfabModel(config.targetCar) && (
+        {(hasSketchfabModel(config.targetCar) || hasLocalOBJModel(config.targetCar) || hasLocalGLTFModel(config.targetCar)) && (
           <div style={{ background: 'rgba(59, 130, 246, 0.1)', border: '1px solid var(--primary)', borderRadius: 'var(--radius-sm)', padding: '0.85rem', fontSize: '0.8rem', color: 'var(--primary)', lineHeight: 1.5 }}>
             🔗 <strong>High-Fidelity Model Active</strong><br />
-            This is an interactive Sketchfab 3D model. Use orbit controls directly on the viewer. Colour &amp; mod selections will be saved with your configuration.
+            This is an interactive 3D model. Use orbit controls directly on the viewer. Colour &amp; mod selections will be saved with your configuration.
           </div>
         )}
 

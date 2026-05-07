@@ -1,9 +1,13 @@
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
+import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 import * as THREE from 'three';
 
 class ModelLoaderService {
   private gltfLoader: GLTFLoader;
+  private objLoader: OBJLoader;
+  private mtlLoader: MTLLoader;
 
   constructor() {
     this.gltfLoader = new GLTFLoader();
@@ -12,6 +16,10 @@ class ModelLoaderService {
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
     this.gltfLoader.setDRACOLoader(dracoLoader);
+
+    // Setup OBJ and MTL loaders
+    this.objLoader = new OBJLoader();
+    this.mtlLoader = new MTLLoader();
   }
 
   /**
@@ -38,6 +46,50 @@ class ModelLoaderService {
           reject(error);
         }
       );
+    });
+  }
+
+  /**
+   * Loads an OBJ model from a URL
+   */
+  public loadOBJModel(objUrl: string, mtlUrl?: string): Promise<THREE.Group> {
+    return new Promise((resolve, reject) => {
+      if (mtlUrl) {
+        // Load materials first, then OBJ
+        this.mtlLoader.load(
+          mtlUrl,
+          (materials) => {
+            materials.preload();
+            this.objLoader.setMaterials(materials);
+            this.objLoader.load(
+              objUrl,
+              (object) => {
+                resolve(object);
+              },
+              undefined,
+              (error) => {
+                reject(error);
+              }
+            );
+          },
+          undefined,
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        // Load OBJ without materials
+        this.objLoader.load(
+          objUrl,
+          (object) => {
+            resolve(object);
+          },
+          undefined,
+          (error) => {
+            reject(error);
+          }
+        );
+      }
     });
   }
 }

@@ -9,6 +9,8 @@ export const INDIAN_CARS = [
 
 export const SUPERCARS = [
   { brand: 'Apollo Automobil', models: ['Intensa Emozione', 'Arrow', 'Project One', 'EVO'] },
+  { brand: 'Koenigsegg', models: ['Agera'] },
+  { brand: 'Ferrari', models: ['458 Italia'] },
 ];
 
 export const EXTERNAL_MODELS = [
@@ -22,9 +24,29 @@ export const SKETCHFAB_MODELS: Record<string, string> = {
   'BMW X7 M60i': '56642189e66d47519bb2e7e5e50e9de7', // skfb.ly/ptOSG
 };
 
+/** Local OBJ model paths (keyed by full car name) */
+export const LOCAL_OBJ_MODELS: Record<string, string> = {
+  'Koenigsegg Agera': '/models/uploads_files_2792345_Koenigsegg.obj',
+};
+
+/** Local GLTF model paths (keyed by full car name) */
+export const LOCAL_GLTF_MODELS: Record<string, string> = {
+  'Ferrari 458 Italia': '/models/ferrari.glb',
+};
+
 /** Returns true if a given car name has a Sketchfab-hosted model */
 export function hasSketchfabModel(carName: string): boolean {
   return carName in SKETCHFAB_MODELS;
+}
+
+/** Returns true if a given car name has a local OBJ model */
+export function hasLocalOBJModel(carName: string): boolean {
+  return carName in LOCAL_OBJ_MODELS;
+}
+
+/** Returns true if a given car name has a local GLTF model */
+export function hasLocalGLTFModel(carName: string): boolean {
+  return carName in LOCAL_GLTF_MODELS;
 }
 
 export const FLATTENED_CARS = ALL_CARS.flatMap(brand => brand.models.map(m => `${brand.brand} ${m}`));
