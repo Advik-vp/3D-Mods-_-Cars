@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Upload, AlertTriangle, PenTool } from 'lucide-react';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 type DamageResult = {
@@ -56,8 +57,7 @@ export default function DamageDetection() {
             </label>
           ) : (
             <div className={styles.previewWrapper}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image} alt="Uploaded Vehicle" className={styles.previewImage} />
+              <Image src={image} alt="Uploaded Vehicle" width={500} height={300} unoptimized className={styles.previewImage} />
               
               {/* Simulated Bounding Boxes appearing after analysis */}
               {results && (

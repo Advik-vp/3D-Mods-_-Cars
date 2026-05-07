@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useCart } from '@/components/CartProvider';
 import { FLATTENED_CARS } from '@/lib/constants';
 import { ShoppingCart, Compass } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -78,8 +79,7 @@ export default function Marketplace() {
         <div className={styles.grid}>
           {products.map(p => (
             <div key={p._id} className={styles.card}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.image} alt={p.name} className={styles.img} />
+              <Image src={p.image} alt={p.name} width={400} height={250} className={styles.img} unoptimized />
               <div className={styles.content}>
                 <div className={styles.brand}>{p.brand} | {p.category}</div>
                 <h3 className={styles.name}>{p.name}</h3>

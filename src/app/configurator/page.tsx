@@ -11,6 +11,7 @@ import SketchfabViewer from '@/components/SketchfabViewer';
 import styles from './page.module.css';
 import { FLATTENED_CARS, SKETCHFAB_MODELS, hasSketchfabModel, LOCAL_OBJ_MODELS, hasLocalOBJModel, LOCAL_GLTF_MODELS, hasLocalGLTFModel } from '@/lib/constants';
 import { ShoppingCart, X } from 'lucide-react';
+import Image from 'next/image';
 
 const CAR_COLORS = ['#ffffff', '#000000', '#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
 
@@ -242,8 +243,7 @@ export default function Configurator() {
             <p style={{ opacity: 0.6, fontSize: '0.875rem' }}>No matching aftermarket parts found.</p>
           ) : marketParts.map(part => (
             <div key={part._id} className={styles.marketProduct}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={part.image} alt={part.name} />
+              <Image src={part.image} alt={part.name} width={100} height={100} unoptimized style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
               <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 600 }}>{part.category}</div>
               <div style={{ fontWeight: 600, fontSize: '0.9rem' }}>{part.name}</div>
               <div style={{ color: 'var(--success)', fontWeight: 800 }}>₹{part.price.toLocaleString('en-IN')}</div>

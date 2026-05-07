@@ -3,6 +3,7 @@ import { useState, Suspense, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stage, Environment } from '@react-three/drei';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import CarModel from '@/components/CarModel';
 import styles from './page.module.css';
 import { Download, Share2, ArrowLeft } from 'lucide-react';
@@ -119,12 +120,14 @@ export default function VirtualGarage() {
           <div className={styles.carSelector}>
             {mods.map(mod => (
               <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <Image 
                   key={mod._id} 
                   src={mod.previewImage || 'https://via.placeholder.com/120x80?text=No+Preview'} 
                   className={styles.carThumb} 
                   alt={`${mod.name} thumbnail`} 
+                  width={120}
+                  height={80}
+                  unoptimized
                   data-active={activeMod?._id === mod._id}
                   onClick={() => setActiveMod(mod)}
                 />

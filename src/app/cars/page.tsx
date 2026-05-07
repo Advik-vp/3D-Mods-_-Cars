@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 const CATEGORY_FILTERS = ['all', 'suv', 'sedan', 'hatchback', 'supercar', 'sports', 'truck'];
@@ -76,8 +77,7 @@ export default function CarLibrary() {
             <div key={car._id} className={styles.card}>
               {car.previewImage ? (
                 <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={car.previewImage} alt={car.name} className={styles.thumbImg} />
+                  <Image src={car.previewImage} alt={car.name} width={300} height={200} unoptimized className={styles.thumbImg} />
                 </>
               ) : (
                 <div className={styles.thumb}>{CATEGORY_EMOJI[car.category] || '🚗'}</div>

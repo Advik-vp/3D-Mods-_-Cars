@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 const CATEGORIES = ['suv', 'sedan', 'hatchback', 'supercar', 'sports', 'truck'];
@@ -96,8 +97,7 @@ export default function ImportCarPage() {
             <label className="label">Preview Image URL (optional)</label>
             <input className="input-field" type="url" placeholder="https://example.com/car-preview.jpg" value={form.previewImage} onChange={e => setForm({...form, previewImage: e.target.value})} />
             {form.previewImage && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={form.previewImage} alt="Preview" className={styles.preview} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+              <Image src={form.previewImage} alt="Preview" width={200} height={120} unoptimized className={styles.preview} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
             )}
           </div>
 

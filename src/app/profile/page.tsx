@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import styles from '../auth.module.css';
 import { FLATTENED_CARS } from '@/lib/constants';
 
@@ -89,8 +90,7 @@ export default function ProfileEditor() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
             {form.profilePicture ? (
               <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={form.profilePicture} alt="Profile" style={{ width: 100, height: 100, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--primary)' }} />
+                <Image src={form.profilePicture} alt="Profile" width={100} height={100} unoptimized style={{ borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--primary)' }} />
               </>
             ) : (
               <div style={{ width: 100, height: 100, borderRadius: '50%', background: 'var(--surface-hover)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px dashed var(--border)' }}>

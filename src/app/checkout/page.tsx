@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
 import { useRouter } from 'next/navigation';
 import { CreditCard, ShoppingBag, CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Checkout() {
@@ -86,8 +87,7 @@ export default function Checkout() {
         <div style={{ marginBottom: '2rem' }}>
           {cart.length === 0 ? <p style={{ opacity: 0.6 }}>Your modular cart is entirely empty.</p> : cart.map(item => (
             <div key={item._id} className={styles.cartItem}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={item.image} alt={item.name} className={styles.cartItemImg} />
+              <Image src={item.image} alt={item.name} width={80} height={80} unoptimized className={styles.cartItemImg} />
               <div className={styles.cartItemDetails}>
                 <div className={styles.cartItemName}>{item.name}</div>
                 <div style={{ fontSize: '0.75rem', opacity: 0.8 }}>Qty: {item.quantity}</div>

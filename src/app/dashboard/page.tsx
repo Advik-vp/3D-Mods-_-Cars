@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { determineBaseGeometry } from '@/lib/constants';
 import { Sparkles, Camera, TrendingUp, ShieldAlert, ShieldCheck, Video, VideoOff } from 'lucide-react';
 import { useCamera } from '@/components/CameraProvider';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 type DashboardUser = {
@@ -265,8 +266,7 @@ export default function Dashboard() {
                   <div key={mod._id} className={styles.historyCard}>
                     {mod.previewImage ? (
                       <>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={mod.previewImage} alt={mod.name} className={styles.historyImg} />
+                        <Image src={mod.previewImage} alt={mod.name} width={200} height={120} unoptimized className={styles.historyImg} />
                       </>
                     ) : (
                       <div className={styles.historyImg} />

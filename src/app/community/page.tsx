@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 import { Heart, MessageSquare, Award, Flame } from 'lucide-react';
+import Image from 'next/image';
 
 type CommunityComment = {
   userName: string;
@@ -76,8 +77,7 @@ export default function Community() {
 
       {featured && (
         <div className={styles.heroCard}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={featured.previewImage || 'https://via.placeholder.com/600x400?text=3D+Profile+Snap'} alt="Featured" className={styles.heroImg} />
+          <Image src={featured.previewImage || 'https://via.placeholder.com/600x400?text=3D+Profile+Snap'} alt="Featured" width={600} height={400} unoptimized className={styles.heroImg} />
           <div className={styles.heroContent}>
             <div className={styles.featuredBadge}><Award size={14} style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }}/> AI Design of the Week</div>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>{featured.name}</h2>
@@ -104,8 +104,7 @@ export default function Community() {
           <div className={styles.grid}>
             {trending.map(mod => (
               <div key={mod._id} className={styles.postCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={mod.previewImage || 'https://via.placeholder.com/300x200?text=Profile'} alt={mod.name} className={styles.postImg} />
+                <Image src={mod.previewImage || 'https://via.placeholder.com/300x200?text=Profile'} alt={mod.name} width={300} height={200} unoptimized className={styles.postImg} />
                 <div className={styles.postContent}>
                   <h3 style={{ fontSize: '1.25rem' }}>{mod.name}</h3>
                   <div className={styles.author}>{mod.carModel} • Base: {mod.config?.baseModel?.toUpperCase() || 'SEDAN'}</div>

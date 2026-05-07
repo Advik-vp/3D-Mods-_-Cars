@@ -31,30 +31,34 @@ export default function Login() {
   const recaptchaContainerRef = useRef<HTMLDivElement>(null);
   const [recaptchaVerifier, setRecaptchaVerifier] = useState<RecaptchaVerifier | null>(null);
 
+  const hasInitialized = useRef(false);
+
   useEffect(() => {
     // Initialize Recaptcha only once
     const isMock = !process.env.NEXT_PUBLIC_FIREBASE_API_KEY || process.env.NEXT_PUBLIC_FIREBASE_API_KEY.includes('mock');
+    let localVerifier: RecaptchaVerifier | null = null;
     
-    if (typeof window !== 'undefined' && !recaptchaVerifier && recaptchaContainerRef.current && !isMock) {
+    if (typeof window !== 'undefined' && !hasInitialized.current && recaptchaContainerRef.current && !isMock) {
       try {
-        const verifier = new RecaptchaVerifier(auth, recaptchaContainerRef.current, {
+        localVerifier = new RecaptchaVerifier(auth, recaptchaContainerRef.current, {
           size: 'invisible',
           callback: () => {
             // reCAPTCHA solved
           }
         });
-        setRecaptchaVerifier(verifier);
+        setRecaptchaVerifier(localVerifier);
+        hasInitialized.current = true;
       } catch (err) {
         console.error('Recaptcha init failed', err);
       }
     }
     
     return () => {
-      if (recaptchaVerifier) {
-        recaptchaVerifier.clear();
+      if (localVerifier) {
+        localVerifier.clear();
+        hasInitialized.current = false;
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSendOtp = async (e: React.FormEvent) => {
